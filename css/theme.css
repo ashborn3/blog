@@ -1,0 +1,28 @@
+/* styles.css */
+
+/* Light mode styles */
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #343a40;
+    color: white;
+}
+
+.navbar-light-mode {
+    background-color: #f8f9fa !important;
+    color: black;
+}
+
+.navbar-dark-mode {
+    background-color: #343a40 !important;
+    color: white;
+}
+
+.navbar-dark-mode .navbar-brand,
+.navbar-dark-mode .nav-link {
+    color: white !important;
+}

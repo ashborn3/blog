@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./css/theme.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column vh-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid fs-4">
+			<a class="navbar-brand fs-1" href="#">Nitin's Blogs</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">Home</a>
+					</li>
+					<li class="nav-item ms-3">
+						<a class="nav-link" href="#">Blogs</a>
+					</li>
+					<li class="nav-item ms-3">
+						<a class="nav-link" href="#">About</a>
+					</li>
+					<li class="nav-item ms-3">
+						<button type="button" class="btn btn-primary btn-lg">GitHub</button>
+					</li>
+					<li class="nav-item ms-3">
+						<button id="theme-toggle" type="button" class="btn btn-secondary btn-lg">
+							<i id="theme-icon" class="fas fa-moon"></i> <!-- Default icon -->
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+    </nav>
+
+    <main class="container flex-grow-1 py-5">
+        <h1 class="mb-4">Blog Title</h1>
+        <p class="lead">This is the introduction to the blog post. It gives a brief overview of what the blog post is about.</p>
+
+        <h2 class="mb-3">Section Title</h2>
+        <p>This is a section of the blog post. It contains detailed information about a specific topic related to the blog post.</p>
+
+        <!-- Add more sections as needed -->
+
+        <h2 class="mb-3">Conclusion</h2>
+        <p>This is the conclusion of the blog post. It summarizes the main points of the blog post and provides a closing statement.</p>
+    </main>
+
+    <footer class="text-center py-3">
+        <p>© 2022 Nitin's Blogs. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="./js/modeButton.js"></script>
+</body>
+</html>
