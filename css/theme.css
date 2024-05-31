@@ -26,3 +26,13 @@ body.dark-mode {
 .navbar-dark-mode .nav-link {
     color: white !important;
 }
+
+.card.light-mode {
+    background-color: white;
+    color: black;
+}
+
+.card.dark-mode {
+    background-color: #343a40;
+    color: white;
+}
