@@ -1,4 +1,6 @@
-document.getElementById('theme-toggle').addEventListener('click', function () {
+document.getElementById('theme-toggle').addEventListener('click', changeMode);
+
+function changeMode() {
     const body = document.body;
     const navbar = document.querySelector('.navbar');
     const themeIcon = document.getElementById('theme-icon');
@@ -23,4 +25,4 @@ document.getElementById('theme-toggle').addEventListener('click', function () {
         themeIcon.classList.remove('fa-sun');
         themeIcon.classList.add('fa-moon');
     }
-});
+}
