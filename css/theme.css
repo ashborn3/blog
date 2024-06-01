@@ -1,8 +1,13 @@
 /* styles.css */
 
+body {
+    background-color: wheat;
+    color: black;
+}
+
 /* Light mode styles */
 body.light-mode {
-    background-color: white;
+    background-color: wheat;
     color: black;
 }
 
@@ -13,7 +18,7 @@ body.dark-mode {
 }
 
 .navbar-light-mode {
-    background-color: #f8f9fa !important;
+    background-color: wheat !important;
     color: black;
 }
 
@@ -24,7 +29,7 @@ body.dark-mode {
 
 .navbar-dark-mode .navbar-brand,
 .navbar-dark-mode .nav-link {
-    color: white !important;
+    color: wheat !important;
 }
 
 .card.light-mode {
@@ -35,4 +40,14 @@ body.dark-mode {
 .card.dark-mode {
     background-color: #343a40;
     color: white;
+}
+
+.navbar {
+    background-color: wheat !important;
+    color: #333 !important;
+}
+
+.card-body {
+    background-color: #E8CBA1 !important;
+    color: #333 !important;
 }
