@@ -1,17 +1,10 @@
 [
     {
-        "title": "Blog 1",
-        "summary": "This is the summary of blog 1",
-        "url": "blog1.html",
-        "date": "2021-01-01",
-        "author": "John Doe"
+        "title": "Writing Your Own Basic System Utilities: Part 1",
+        "summary": "Learn to create your own basic system utilities in C, starting with a simple version of the \"cat\" command. This tutorial will guide you through reading and displaying file contents, enhancing your understanding of file handling and command-line operations.",
+        "url": "./blogs/blog1.html",
+        "date": "01-June-2024",
+        "author": "Nitin Chauhan"
 
-    },
-    {
-        "title": "Blog 2",
-        "summary": "This is the summary of blog 2",
-        "url": "blog2.html",
-        "date": "2021-01-02",
-        "author": "Jane Doe"
     }
 ]
