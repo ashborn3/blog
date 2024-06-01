@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="../../css/theme.css" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column vh-100">
+    <nav class="navbar navbar-expand-lg navbar-light-mode bg-light">
+        <div class="container-fluid fs-4">
+            <a class="navbar-brand fs-1" href="../index.html">Nitin's Blogs</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="./../blogList.html">Blogs</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="./../about.html">About</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a href="https://github.com/ashborn3" target="_blank">
+                            <button type="button" class="btn btn-primary btn-lg">GitHub</button>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <button id="theme-toggle" type="button" class="btn btn-secondary btn-lg">
+                            <i id="theme-icon" class="fas fa-moon"></i> <!-- Default icon -->
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container flex-grow-1 py-5">
+        <h1 class="mb-4">Writing Your Own Basic System Utilities: Part 1</h1>
+        <p class="lead">Welcome to the first part of our series on creating your own basic system utilities. In this
+            series, we will explore how to write simple yet powerful utilities in C, starting with the "cat" command.
+            This guide will walk you through the implementation of a basic version of "cat," which reads and displays
+            the contents of files. By the end of this tutorial, you'll have a deeper understanding of file handling and
+            command-line operations in C, setting the stage for more complex utilities like "grep" and "zip/unzip" in
+            future installments.</p>
+
+
+        <h2 class="mb-3">so Lettuce Begin!</h2>
+        <p>Creating your own system utilities can be a rewarding and educational experience. It not only enhances your
+            programming skills but also deepens your understanding of how software interacts with hardware. In this
+            blog, we’ll explore the basics of writing some simple system utilities in C, starting with “cat”, then
+            “grep” and finally “zip” and “unzip”.</p>
+        <p>Let us begin with “cat”. Before implementing this command, we must understand what it does and determine the
+            scope of our program. In this blog, I will only cover the basic implementation of the utility. Feel free to
+            change and improve the program as per your needs.</p>
+        <p>The cat command in Unix and Unix-like operating systems concatenates and displays the contents of files. It
+            reads files sequentially, writing their contents to the standard output (usually the terminal). cat can be
+            used to display the contents of one or more files, combine multiple files into a single file, and create new
+            files from the standard input.</p>
+        <p>Before starting, we need some basic things to be installed on your system:</p>
+        <ul>
+            <li>Any C Compiler (I will be using GCC)</li>
+            <li>A Text Editor</li>
+            <li>A Terminal</li>
+            <li>Make (Optional)</li>
+        </ul>
+        <p>We will begin by including the Standard Input/Output Library:</p>
+        <pre><code>#include &lt;stdio.h&gt;</code></pre>
+        <p>The “#include &lt;stdio.h&gt;” directive tells the compiler to include the standard input/output library,
+            which provides functions for file handling, input/output operations and much more.</p>
+        <p>Next, we define the main function:</p>
+        <pre><code>int main(int argc, char** argv[]) {
+    return 0;
+}</code></pre>
+        <p>The main function is the entry point of a C program. It takes two arguments: argc (argument count) and argv
+            (argument vector).</p>
+        <ul>
+            <li><code>argc</code> is the number of command-line arguments the program has received. Its minimum value is
+                1. It’s because the first argument will always be the name of the file being executed.</li>
+            <li><code>argv</code> is an array of strings representing the arguments. You may have noticed we use a
+                double char pointer to represent the array. There exist other ways such as, <code>char* argv[]</code> or
+                <code>char argv[][]</code>. At your level, consider it a matter of personal preference. The first string
+                in this array will always be the executable name, then the arguments follow, if any.
+            </li>
+        </ul>
+        <p>Now, let's add the variables for file handling:</p>
+        <pre><code>int main(int argc, char** argv) {
+    FILE *fp;
+    int c;
+
+    return 0;
+}</code></pre>
+        <p><code>fp</code> is a pointer to a ‘FILE’ object, which will be used to handle our file operations and will
+            store the handle to our file. <code>c</code> is an integer variable that will store the characters read from
+            the file.</p>
+        <p>Next, we loop through the arguments to open and read each file:</p>
+        <pre><code>for (int i = 1; i &lt; argc; i++) {
+    fp = fopen(argv[i], "r");
+    if (fp == NULL) {
+        printf("ncat: Failed to open %s file\n", argv[i]);
+        continue;
+    }
+    printf("-- %s --\n", argv[i]);
+    while (1) {
+        c = fgetc(fp);
+        if (c == EOF) {
+            break;
+        }
+        printf("%c", c);
+    }
+    fclose(fp);
+    printf("\n");
+}</code></pre>
+        <p>Here, we loop from 1 (the first file name argument) to argc. Each time we open the file at argc[i] in read
+            mode using the <code>fopen()</code> function and store the returned value in the <code>fp</code> pointer.
+        </p>
+        <p>To read the file, we use a while loop to read each character until we reach the end of the file:</p>
+        <pre><code>while (1) {
+    c = fgetc(fp);
+    if (c == EOF) {
+        break;
+    }
+    printf("%c", c);
+}</code></pre>
+        <p>This loop will read characters from the file one by one until it reaches the end of the file (EOF). When
+            <code>fgetc</code> returns EOF, the loop breaks, and we stop reading the file.
+        </p>
+        <p>After finishing reading the file, it's good practice to close the file using the <code>fclose</code> function
+            to free up system resources:</p>
+        <pre><code>fclose(fp);</code></pre>
+        <p>Let's put everything together. Here is the complete implementation of our "ncat" utility:</p>
+        <pre><code>#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[]) {
+    FILE *fp;
+    int c;
+    if (argc == 1) {
+        printf("ncat: 0 arguments given\n");
+        return -1;
+    }
+    for (int i = 1; i &lt; argc; i++) {
+        fp = fopen(argv[i], "r");
+        if (fp == NULL) {
+            printf("ncat: Failed to open %s file\n", argv[i]);
+            continue;
+        }
+        printf("-- %s --\n", argv[i]);
+        while (1) {
+            c = fgetc(fp);
+            if (c == EOF) {
+                break;
+            }
+            printf("%c", c);
+        }
+        fclose(fp);
+        printf("\n");
+    }
+    return 0;
+}</code></pre>
+        <h2>Explanation:</h2>
+        <h3>Including Standard Input/Output Library:</h3>
+        <pre><code>#include &lt;stdio.h&gt;</code></pre>
+        <p>This directive includes the standard input/output library, which is essential for file handling and other I/O
+            operations.</p>
+        <h3>Main Function:</h3>
+        <pre><code>int main(int argc, char* argv[]) {
+    }</code></pre>
+        <p>The <code>main</code> function is the entry point of the program, taking <code>argc</code> (argument count)
+            and <code>argv</code> (argument vector) as parameters.</p>
+        <h3>Argument Checking:</h3>
+        <pre><code>if (argc == 1) {
+    printf("ncat: 0 arguments given\n");
+    return -1;
+}</code></pre>
+        <p>If no arguments are provided, it prints an error message and exits.</p>
+        <h3>File Handling Loop:</h3>
+        <pre><code>for (int i = 1; i &lt; argc; i++) {
+    fp = fopen(argv[i], "r");
+    if (fp == NULL) {
+        printf("ncat: Failed to open %s file\n", argv[i]);
+        continue;
+    }
+    printf("-- %s --\n", argv[i]);
+    while (1) {
+        c = fgetc(fp);
+        if (c == EOF) {
+            break;
+        }
+        printf("%c", c);
+    }
+    fclose(fp);
+    printf("\n");
+}</code></pre>
+        <p>In this code, each file specified as a command-line argument is opened, read character by character, and
+            printed to the standard output.</p>
+        <h2>How to Compile and Run</h2>
+        <p>To compile and run this program, you can use the GCC compiler. Here are the steps:</p>
+        <h3>Save the Code:</h3>
+        <p>Save the code in a file, for example, <code>ncat.c</code>.</p>
+        <h3>Compile the Program:</h3>
+        <p>Open a terminal and navigate to the directory where <code>ncat.c</code> is saved. Then run:</p>
+        <pre><code>gcc -o ncat ncat.c</code></pre>
+        <p>This command compiles <code>ncat.c</code> and creates an executable named <code>ncat</code>.</p>
+        <h3>Run the Program:</h3>
+        <p>To run the program, use the following command:</p>
+        <pre><code>./ncat file1.txt file2.txt</code></pre>
+        <p>Replace <code>file1.txt</code> and <code>file2.txt</code> with the actual filenames you want to display.</p>
+        <h2>Additional Features to Consider</h2>
+        <p>While the basic implementation of "ncat" is functional, there are several enhancements you can consider
+            adding:</p>
+        <h3>Error Handling for File Closure:</h3>
+        <p>Add checks to ensure <code>fclose</code> is successful:</p>
+        <pre><code>if (fclose(fp) != 0) {
+    printf("ncat: Failed to close %s file\n", argv[i]);
+}</code></pre>
+        <h3>Command-Line Options:</h3>
+        <p>Implement options such as <code>-n</code> to number all output lines, similar to the Unix <code>cat</code>
+            command.</p>
+        <h3>Buffer Reading:</h3>
+        <p>Instead of reading one character at a time, read chunks of data to improve performance:</p>
+        <pre><code>char buffer[1024];
+while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+    printf("%s", buffer);
+}</code></pre>
+        <h3>Concatenating Standard Input:</h3>
+        <p>Allow concatenation of standard input by checking for <code>-</code> as an argument.</p>
+        <h3>Usage Message:</h3>
+        <p>Provide a usage message to help users understand how to use the program:</p>
+        <pre><code>if (argc == 1) {
+    printf("Usage: ncat [FILE]...\n");
+    return -1;
+}</code></pre>
+
+
+        <h2 class="mb-3">Conclusion</h2>
+        <p>Creating your own system utilities is a valuable exercise to enhance your understanding of file handling and
+            command-line operations in C. The "ncat" utility we developed here is a basic implementation of the Unix
+            <code>cat</code> command, and you can build upon it by adding more features and improvements. By working
+            through such projects, you'll gain a deeper appreciation for the complexity and power of system utilities,
+            and you'll be better equipped to tackle more advanced programming challenges in the future.
+        </p>
+        <p>Happy coding!</p>
+
+        <br><br><br><br><br>
+
+        <footer class="text-center py-3">
+            <p>© 2022 Nitin's Blogs. All rights reserved.</p>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            crossorigin="anonymous"></script>
+        <script src="../../js/modeButton.js"></script>
+</body>
+
+</html>
