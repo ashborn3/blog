@@ -25,4 +25,17 @@ function changeMode() {
         themeIcon.classList.remove('fa-sun');
         themeIcon.classList.add('fa-moon');
     }
+
+    cards.forEach(card => {
+        // If the body has 'dark-mode' class, add 'dark-mode' to the card and remove 'light-mode'
+        if (document.body.classList.contains('dark-mode')) {
+            card.classList.add('dark-mode');
+            card.classList.remove('light-mode');
+        } 
+        // If the body has 'light-mode' class, add 'light-mode' to the card and remove 'dark-mode'
+        else if (document.body.classList.contains('light-mode')) {
+            card.classList.add('light-mode');
+            card.classList.remove('dark-mode');
+        }
+    });
 }

@@ -38,16 +38,13 @@ body.dark-mode {
 }
 
 .card.light-mode {
-    background-color: white;
+    background-color: wheat;
     color: black;
+    border: 1px solid green;
 }
 
 .card.dark-mode {
     background-color: #343a40;
     color: white;
-}
-
-.card-body {
-    background-color: #E8CBA1 !important;
-    color: #333 !important;
+    border: 1px solid grey
 }

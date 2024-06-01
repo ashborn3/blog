@@ -57,7 +57,7 @@
             const blogList = document.getElementById('blog-list');
             blogs.forEach(blog => {
                 const blogElement = document.createElement('div');
-                blogElement.classList.add('card', 'mb-4');
+                blogElement.classList.add('card', 'mb-4', "light-mode");
                 blogElement.innerHTML = `
                     <div class="card-body">
                         <h5 class="card-title">${blog.title}</h5>
