@@ -29,7 +29,12 @@ body.dark-mode {
 
 .navbar-dark-mode .navbar-brand,
 .navbar-dark-mode .nav-link {
-    color: wheat !important;
+    color: white !important;
+}
+
+.navbar-light-mode .navbar-brand,
+.navbar-light-mode .nav-link {
+    color: black !important;
 }
 
 .card.light-mode {
@@ -40,11 +45,6 @@ body.dark-mode {
 .card.dark-mode {
     background-color: #343a40;
     color: white;
-}
-
-.navbar {
-    background-color: wheat !important;
-    color: #333 !important;
 }
 
 .card-body {
